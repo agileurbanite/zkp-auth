@@ -3,7 +3,7 @@ use zkp_auth::auth_client::AuthClient;
 use zkp_auth::*;
 
 pub mod zkp_auth {
-    tonic::include_proto!("zkp_auth"); // The string specified here must match the proto package name
+    include!("../generated/zkp_auth.rs");
 }
 
 pub async fn run_client() {

@@ -10,3 +10,12 @@ prost = "0.7"
 
 [build-dependencies]
 tonic-build = "0.4"
+
+# Multiple binaries
+[[bin]]
+name = "zkp_auth_server"
+path = "src/main.rs"
+
+[[bin]]
+name = "zkp_auth_client"
+path = "src/main.rs"

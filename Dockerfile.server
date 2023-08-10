@@ -1,0 +1,19 @@
+FROM rust:1.71.1
+
+WORKDIR /usr/src/zkp_auth_server
+
+# Copy over your manifests
+COPY ./Cargo.toml ./Cargo.toml
+COPY ./Cargo.lock ./Cargo.lock
+COPY ./src ./src
+COPY ./generated ./generated
+
+# Copy over the proto definitions and the generated Rust files
+COPY ./proto ./proto
+COPY ./target ./target
+
+# Cache dependencies
+RUN cargo build --release
+
+EXPOSE 50051
+CMD ["./target/release/zkp_auth_server"]

@@ -1,0 +1,18 @@
+FROM rust:latest
+
+WORKDIR /usr/src/zkp_auth_client
+
+# Copy over your manifests
+COPY ./Cargo.toml ./Cargo.toml
+COPY ./Cargo.lock ./Cargo.lock
+COPY ./src ./src
+COPY ./generated ./generated
+
+# Copy over the proto definitions and the generated Rust files
+COPY ./proto ./proto
+COPY ./target ./target
+
+# Now, copy over all your source code and build the client
+RUN cargo build --release
+
+CMD ["./target/release/zkp_auth_client"]
